@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       index: true,
     },
-    phone: String,
+    phoneNumber: String,
     role: {
       type: String,
       default: "buyer",
