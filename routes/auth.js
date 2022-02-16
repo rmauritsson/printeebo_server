@@ -1,6 +1,10 @@
 const express = require("express");
 const { userAuth, currentUser } = require("../controllers/auth");
-const { authCheck } = require("../middlewares/auth");
+const {
+  authCheck,
+  adminCheck,
+  storeOwnerCheck,
+} = require("../middlewares/auth");
 
 const router = express.Router();
 
@@ -9,5 +13,7 @@ const router = express.Router();
 // Controller
 router.post("/user-auth", authCheck, userAuth);
 router.post("/current-user", authCheck, currentUser);
+router.post("/current-creator", authCheck, storeOwnerCheck, currentUser);
+router.post("/current-admin", authCheck, adminCheck, currentUser);
 
 module.exports = router;
