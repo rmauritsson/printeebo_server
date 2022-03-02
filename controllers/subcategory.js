@@ -3,10 +3,11 @@ const slugify = require("slugify");
 
 exports.createSubCategory = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, parent } = req.body;
 
     const subcategory = await new SubCategory({
       name,
+      parent,
       slug: slugify(name).toLowerCase(),
     }).save();
 
@@ -30,11 +31,11 @@ exports.readSubCategory = async (req, res) => {
 
 exports.updateSubCategory = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, parent } = req.body;
 
     const subcategory = await SubCategory.findOneAndUpdate(
       { slug: req.params.slug },
-      { name, slug: slugify(name).toLowerCase() },
+      { name, parent, slug: slugify(name).toLowerCase() },
       { new: true }
     ).exec();
 

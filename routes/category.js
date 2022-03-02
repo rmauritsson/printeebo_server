@@ -1,4 +1,5 @@
 const express = require("express");
+const { authCheck, adminCheck } = require("../middlewares/auth");
 const {
   createCategory,
   readCategory,
@@ -6,7 +7,6 @@ const {
   removeCategory,
   listCategories,
 } = require("../controllers/category");
-const { authCheck, adminCheck } = require("../middlewares/auth");
 
 const router = express.Router();
 
