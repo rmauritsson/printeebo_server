@@ -10,6 +10,7 @@ const {
   updateStore,
   removeStore,
   listStores,
+  getStore,
 } = require("../controllers/store");
 
 const router = express.Router();
@@ -24,6 +25,7 @@ router.delete("/store/:slug", authCheck, adminCheck, removeStore);
 //creator
 router.post("/store", authCheck, storeOwnerCheck, createStore);
 router.get("/stores", listStores);
+router.get("/store/owner/:_id", getStore);
 router.get("/store/:slug", authCheck, storeOwnerCheck, readStore);
 router.put("/store/:slug", authCheck, storeOwnerCheck, updateStore);
 router.delete("/store/:slug", authCheck, storeOwnerCheck, removeStore);

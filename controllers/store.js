@@ -1,4 +1,5 @@
 const Store = require("../models/store");
+const User = require("../models/user");
 const slugify = require("slugify");
 
 exports.createStore = async (req, res) => {
@@ -63,5 +64,21 @@ exports.listStores = async (req, res) => {
     res.json(store);
   } catch (err) {
     res.status(400).send("Failed to list Stores");
+  }
+};
+
+exports.getStore = async (req, res) => {
+  try {
+    try {
+      //const category = await Category.find({}).sort({ createdAt: -1 }).exec();
+      const store = await Store.find({ owner: req.params._id }).exec();
+
+      res.json(store);
+    } catch (err) {
+      res.status(400).send("Failed to list sub scategories");
+    }
+    res.json(store);
+  } catch (err) {
+    res.status(400).send("Failed to Store");
   }
 };
